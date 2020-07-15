@@ -50,9 +50,9 @@ function Movie({ addToSavedList }) {
         <Link to={`/update-movie/${params.id}`}>Edit Movie</Link>
       </div>
 
-      <div onClick={deleteMovie(params.id)}>
+      <button onClick={deleteMovie(params.id)}>
         Delete Movie
-      </div>
+      </button>
     </div>
   );
 }
