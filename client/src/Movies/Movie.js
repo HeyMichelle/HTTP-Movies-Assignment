@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import MovieCard from "./MovieCard";
 import EditMovieForm from "../EditMovie/EditMovieForm";
 
-function Movie({ addToSavedList }) {
+function Movie({ addToSavedList, getMovieList }) {
   const [movie, setMovie] = useState(null);
   const params = useParams();
 
@@ -26,8 +26,10 @@ function Movie({ addToSavedList }) {
       .delete(`http://localhost:5000/api/movies/${id}`, movie)
       .then(response => {
         console.log('delete response', response)
+        getMovieList()
+        this.props.history.push(`/movies/${this.state.id}`)
       })
-  }
+  } //erase condition, should I do an await?
 
   useEffect(() => {
     fetchMovie(params.id);
@@ -50,7 +52,7 @@ function Movie({ addToSavedList }) {
         <Link to={`/update-movie/${params.id}`}>Edit Movie</Link>
       </div>
 
-      <button onClick={deleteMovie(params.id)}>
+      <button onClick= {() => deleteMovie(params.id)}>
         Delete Movie
       </button>
     </div>

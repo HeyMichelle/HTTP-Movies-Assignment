@@ -38,6 +38,7 @@ class EditMovieForm extends React.Component {
           metascore: 0,
           star: ''
         })
+        this.props.getMovieList()
         this.props.history.push(`/movies/${this.state.id}`)
       })
       .catch(err => console.log(err))
